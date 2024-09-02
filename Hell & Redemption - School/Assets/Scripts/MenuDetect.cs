@@ -1,33 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public List<GameObject> targetObjects = new List<GameObject>();
+    public GameObject menu;
+    public Animator animator;
+
+    private void Start()
+    {
+        menu.name = name;
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        foreach (var obj in targetObjects)
-        {
-            if (eventData.pointerEnter == obj)
-            {
-                Debug.Log("Mouse is over: " + obj.name);
-                return; // Exit the loop once the object is found
-            }
-        }
+        Debug.Log("Entered " + menu.name);
+        animator.SetTrigger("select");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        foreach (var obj in targetObjects)
-        {
-            if (eventData.pointerEnter == obj)
-            {
-                Debug.Log("Mouse exited: " + obj.name);
-                return; // Exit the loop once the object is found
-            }
-        }
+        Debug.Log("Exited " + menu.name);
+        animator.SetTrigger("deselect");
     }
 }
