@@ -5,39 +5,29 @@ using UnityEngine.EventSystems;
 
 public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-     public GameObject targetObject;
-
-    // This will be set in the Inspector
-    private string targetName;
-
-    private void Start()
-    {
-        // Initialize targetName based on the assigned GameObject
-        if (targetObject != null)
-        {
-            targetName = targetObject.name;
-        }
-        else
-        {
-            Debug.LogWarning("Target Object is not assigned!");
-        }
-    }
+    public List<GameObject> targetObjects = new List<GameObject>();
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // Check if the current GameObject matches the assigned targetObject
-        if (targetObject != null && gameObject == targetObject)
+        foreach (var obj in targetObjects)
         {
-            Debug.Log("Mouse is over: " + targetObject.name);
+            if (eventData.pointerEnter == obj)
+            {
+                Debug.Log("Mouse is over: " + obj.name);
+                return; // Exit the loop once the object is found
+            }
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        // Check if the current GameObject matches the assigned targetObject
-        if (targetObject != null && gameObject == targetObject)
+        foreach (var obj in targetObjects)
         {
-            Debug.Log("Mouse exited: " + targetObject.name);
+            if (eventData.pointerEnter == obj)
+            {
+                Debug.Log("Mouse exited: " + obj.name);
+                return; // Exit the loop once the object is found
+            }
         }
     }
 }

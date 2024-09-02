@@ -1,46 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Menu : MonoBehaviour
 {
+    Animator _animator;
+    string _currentState;
 
-    public int index;
-    [SerializeField] bool keyDown;
-    [SerializeField] int maxIndex;
+    const string BUTTON_DESELECTION = "button_deselection";
+    const string BUTTON_PRESS = "button_press";
+    const string BUTTON_SELECTED = "button_selected";
 
-
-    void Start()
+    private void Start()
     {
-        
+        _animator = gameObject.GetComponent<Animator>();
     }
 
-    void Update()
+    public void ChangeAnimationState(string newState)
     {
-        if(Input.GetAxis("Vertical") !=0){
-            if(!keyDown){
-                if (Input.GetAxis("Vertical") < 0){
-                    if(index < maxIndex){
-                        index++;
-                    }else{
-                        index=0;
-                    }
-                } else if(Input.GetAxis("Vertical") > 0) {
-                    if (index > 0){
-                        index --;
-                    }else{
-                        index = maxIndex;
-                    }
-                }
-                keyDown = true;
-            }
-        }else {
-            keyDown = false;
+        if (newState == _currentState){
+            return;
         }
-    }
 
-    void OnMouseOver()
-	{
-		Debug.Log(gameObject.name);
-	}
+        _animator.Play(newState);
+        _currentState = newState;
+    }
 }
