@@ -8,6 +8,7 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     public GameObject menu;
     public Animator animator;
+    public Animator image;
 
     private bool isPointerOver = false;
     public bool clickable = true;
@@ -24,19 +25,22 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             Debug.Log("Exit");
             animator.SetTrigger("deselect");
             Cursor.lockState = CursorLockMode.Locked;
-            Application.Quit();
+            image.SetTrigger("fade_in");
         }else if (isPointerOver && Input.GetMouseButtonDown(0) && menu.name == "O"){
             Debug.Log("Options");
             animator.SetTrigger("deselect");
             Cursor.lockState = CursorLockMode.Locked;
+            image.SetTrigger("fade_in");
         }else if (isPointerOver && Input.GetMouseButtonDown(0) && menu.name == "LG"){
             Debug.Log("Load Game");
             animator.SetTrigger("deselect");
             Cursor.lockState = CursorLockMode.Locked;
+            image.SetTrigger("fade_in");
         }else if (isPointerOver && Input.GetMouseButtonDown(0) && menu.name == "Start"){
             Debug.Log("Start Game");
             animator.SetTrigger("deselect");
             Cursor.lockState = CursorLockMode.Locked;
+            image.SetTrigger("fade_in");
         }
     }
 
