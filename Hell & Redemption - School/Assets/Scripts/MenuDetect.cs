@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -12,6 +13,7 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private bool isPointerOver = false;
     public bool clickable = true;
+    public string scene;
 
     private void Start()
     {
@@ -41,6 +43,7 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             animator.SetTrigger("deselect");
             Cursor.lockState = CursorLockMode.Locked;
             image.SetTrigger("fade_in");
+            StartCoroutine (SceneChange());
         }
     }
 
@@ -58,5 +61,12 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         animator.SetTrigger("deselect");
 
         isPointerOver = false;
+    }
+
+    private IEnumerator SceneChange()
+    {
+        yield return new WaitForSeconds(2);
+        Debug.Log("Scene Change");
+        SceneManager.LoadScene(scene);
     }
 }
