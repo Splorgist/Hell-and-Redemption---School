@@ -17,6 +17,7 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public bool button2_down = false;
     public bool button3_down = false;
     public bool button4_down = false;
+    public bool transition = false;
 
     public Animator anim1;
     public Animator anim2;
@@ -39,30 +40,32 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             QuitGame();
         }
 
-        // if (stateInfo.IsName("New State")){
-        //     Debug.Log("No animation playing");
-        // }else{
-        //     Debug.Log("Animation is playing");
-        // }
+        if (stateInfo.IsName("button1_pressed")){
+            Debug.Log("Pressed button");
+            transition = true;
+        }else{
+            Debug.Log("Animation is not playing");
+            transition = false;
+        }
     }
 
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("Pointer entered button: " + eventData.pointerEnter.name);
-        if (eventData.pointerEnter.name == button1.name){
+        if (eventData.pointerEnter.name == button1.name && transition == false){
             Debug.Log("Play selected for button1");
             anim1.Play("button1_select");
             button1_down = true;
-        }else if (eventData.pointerEnter.name == button2.name){
+        }else if (eventData.pointerEnter.name == button2.name && transition == false){
             Debug.Log("Play selected for button1");
             anim2.Play("button1_select");
             button2_down = true;
-        }else if (eventData.pointerEnter.name == button3.name){
+        }else if (eventData.pointerEnter.name == button3.name && transition == false){
             Debug.Log("Play selected for button1");
             anim3.Play("button1_select");
             button3_down = true;
-        }else if (eventData.pointerEnter.name == button4.name){
+        }else if (eventData.pointerEnter.name == button4.name && transition == false){
             Debug.Log("Play selected for button1");
             anim4.Play("button1_select");
             button4_down = true;
@@ -72,19 +75,19 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("Pointer exited button: " + eventData.pointerEnter.name);
-        if (eventData.pointerEnter.name == button1.name){
+        if (eventData.pointerEnter.name == button1.name && transition == false){
             Debug.Log("Play deselect for " + button1.name);
             button1_down = false;
             anim1.Play("button1_deselect");
-        }else if (eventData.pointerEnter.name == button2.name){
+        }else if (eventData.pointerEnter.name == button2.name && transition == false){
             Debug.Log("Play deselect for " + button1.name);
             button2_down = false;
             anim2.Play("button1_deselect");
-        }else if (eventData.pointerEnter.name == button3.name){
+        }else if (eventData.pointerEnter.name == button3.name && transition == false){
             Debug.Log("Play deselect for " + button1.name);
             button3_down = false;
             anim3.Play("button1_deselect");
-        }else if (eventData.pointerEnter.name == button4.name){
+        }else if (eventData.pointerEnter.name == button4.name && transition == false){
             Debug.Log("Play deselect for " + button1.name);
             button4_down = false;
             anim4.Play("button1_deselect");
