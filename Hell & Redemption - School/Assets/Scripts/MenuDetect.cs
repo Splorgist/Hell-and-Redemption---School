@@ -30,13 +30,13 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         AnimatorStateInfo stateInfo = anim1.GetCurrentAnimatorStateInfo(0);
         
         if (button1_down && Input.GetMouseButtonDown(0)){
-            MenuTrans();
+            StartGame();
         }else if (button2_down && Input.GetMouseButtonDown(0)){
-            MenuTrans();
+            LoadGame();
         }else if (button3_down && Input.GetMouseButtonDown(0)){
-            MenuTrans();
+            Options();
         }else if (button4_down && Input.GetMouseButtonDown(0)){
-            MenuTrans();
+            QuitGame();
         }
 
         // if (stateInfo.IsName("New State")){
@@ -91,12 +91,43 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
-    void MenuTrans()
+    void StartGame()
     {
-        // Fades all buttons and titles within the scene
+        anim1.Play("button1_pressed");
+        anim2.Play("button1_fade");
+        anim3.Play("button1_fade");
+        anim4.Play("button1_fade");
 
         Debug.Log("Menu transition");
-        
-        // Calls necessary function to create new menu
+    }
+
+    void LoadGame()
+    {
+        anim1.Play("button1_fade");
+        anim2.Play("button1_pressed");
+        anim3.Play("button1_fade");
+        anim4.Play("button1_fade");
+
+        Debug.Log("Menu transition");
+    }
+
+    void Options()
+    {
+        anim1.Play("button1_fade");
+        anim2.Play("button1_fade");
+        anim3.Play("button1_pressed");
+        anim4.Play("button1_fade");
+
+        Debug.Log("Menu transition");
+    }
+
+    void QuitGame()
+    {
+        anim1.Play("button1_fade");
+        anim2.Play("button1_fade");
+        anim3.Play("button1_fade");
+        anim4.Play("button1_pressed");
+
+        Debug.Log("Menu transition");
     }
 }
