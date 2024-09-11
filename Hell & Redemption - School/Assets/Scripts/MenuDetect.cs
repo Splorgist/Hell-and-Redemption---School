@@ -22,6 +22,7 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public Animator anim2;
     public Animator anim3;
     public Animator anim4;
+    public Animator title;
 
 
     public void OnPointerEnter(PointerEventData eventData)

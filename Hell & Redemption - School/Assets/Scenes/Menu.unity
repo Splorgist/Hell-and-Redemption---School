@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 273964543}
   - component: {fileID: 273964544}
+  - component: {fileID: 273964545}
   m_Layer: 0
   m_Name: Buttons
   m_TagString: Untagged
@@ -156,6 +157,7 @@ Transform:
   - {fileID: 4536965744358126878}
   - {fileID: 4536965742404500553}
   - {fileID: 4536965742971585778}
+  - {fileID: 1772329723}
   m_Father: {fileID: 476151404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &273964544
@@ -174,10 +176,36 @@ MonoBehaviour:
   button2: {fileID: 5981514023251821649}
   button3: {fileID: 5981514025052622086}
   button4: {fileID: 5981514024537667005}
+  button1_down: 0
+  button2_down: 0
+  button3_down: 0
+  button4_down: 0
   anim1: {fileID: 4800605730910432586}
   anim2: {fileID: 4536965744358126879}
   anim3: {fileID: 4536965742404500554}
   anim4: {fileID: 4536965742971585779}
+  title: {fileID: 0}
+--- !u!95 &273964545
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273964542}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 51988c06d3c92804681c817bc5677d9a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &476151400
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +300,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1772329723}
   - {fileID: 273964543}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -374,16 +401,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772329722}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5.5854197}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 476151404}
+  m_Father: {fileID: 273964543}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 950}
+  m_AnchoredPosition: {x: -250.69922, y: 680.5708}
   m_SizeDelta: {x: 2000, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1772329724
@@ -1243,8 +1270,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 218103807
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.048592627}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
