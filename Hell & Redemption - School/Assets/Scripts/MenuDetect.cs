@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+
 public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject button1;
@@ -13,11 +14,14 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public GameObject button4;
 
 
+
+
     public bool button1_down = false;
     public bool button2_down = false;
     public bool button3_down = false;
     public bool button4_down = false;
     public bool transition = false;
+
 
     public Animator anim1;
     public Animator anim2;
@@ -25,29 +29,45 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public Animator anim4;
 
 
+
+
     private void Update()
     {
 
-        AnimatorStateInfo stateInfo = anim1.GetCurrentAnimatorStateInfo(0);
-        
+
+        AnimatorStateInfo stateInfo1 = anim1.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo stateInfo2 = anim2.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo stateInfo3 = anim3.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo stateInfo4 = anim4.GetCurrentAnimatorStateInfo(0);
+       
         if (button1_down && Input.GetMouseButtonDown(0)){
-            StartGame();
+            StartCoroutine (StartGame());
         }else if (button2_down && Input.GetMouseButtonDown(0)){
-            LoadGame();
+            StartCoroutine (LoadGame());
         }else if (button3_down && Input.GetMouseButtonDown(0)){
-            Options();
+            StartCoroutine (Options());
         }else if (button4_down && Input.GetMouseButtonDown(0)){
-            QuitGame();
+            StartCoroutine (QuitGame());
         }
 
-        if (stateInfo.IsName("button1_pressed")){
-            Debug.Log("Pressed button");
+
+        if (stateInfo1.IsName("button1_pressed")){
+            transition = true;
+        }else if (stateInfo2.IsName("button1_pressed")){
+            Debug.Log("Pressed Load button");
+            transition = true;
+        }else if (stateInfo3.IsName("button1_pressed")){
+            Debug.Log("Pressed Options button");
+            transition = true;
+        }else if (stateInfo4.IsName("button1_pressed")){
+            Debug.Log("Pressed Quit button");
             transition = true;
         }else{
-            Debug.Log("Animation is not playing");
             transition = false;
         }
     }
+
+
 
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -72,6 +92,7 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
+
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("Pointer exited button: " + eventData.pointerEnter.name);
@@ -94,43 +115,86 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
-    void StartGame()
+
+    private IEnumerator StartGame()
     {
         anim1.Play("button1_pressed");
         anim2.Play("button1_fade");
         anim3.Play("button1_fade");
         anim4.Play("button1_fade");
 
+
         Debug.Log("Menu transition");
+
+
+        yield return new WaitForSeconds(1);
+        Debug.Log("Disable assets");
+        button1.SetActive(false);
+        button2.SetActive(false);
+        button3.SetActive(false);
+        button4.SetActive(false);
     }
 
-    void LoadGame()
+
+    private IEnumerator LoadGame()
     {
         anim1.Play("button1_fade");
         anim2.Play("button1_pressed");
         anim3.Play("button1_fade");
         anim4.Play("button1_fade");
 
+
         Debug.Log("Menu transition");
+
+
+        yield return new WaitForSeconds(1);
+        Debug.Log("Disable assets");
+        button1.SetActive(false);
+        button2.SetActive(false);
+        button3.SetActive(false);
+        button4.SetActive(false);
     }
 
-    void Options()
+
+    private IEnumerator Options()
     {
         anim1.Play("button1_fade");
         anim2.Play("button1_fade");
         anim3.Play("button1_pressed");
         anim4.Play("button1_fade");
 
+
         Debug.Log("Menu transition");
+
+
+        yield return new WaitForSeconds(1);
+        Debug.Log("Disable assets");
+        button1.SetActive(false);
+        button2.SetActive(false);
+        button3.SetActive(false);
+        button4.SetActive(false);
     }
 
-    void QuitGame()
+
+    private IEnumerator QuitGame()
     {
         anim1.Play("button1_fade");
         anim2.Play("button1_fade");
         anim3.Play("button1_fade");
         anim4.Play("button1_pressed");
 
+
         Debug.Log("Menu transition");
+
+
+        yield return new WaitForSeconds(1);
+        Debug.Log("Disable assets");
+        button1.SetActive(false);
+        button2.SetActive(false);
+        button3.SetActive(false);
+        button4.SetActive(false);
     }
 }
+
+
+
