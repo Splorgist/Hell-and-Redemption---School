@@ -32,11 +32,15 @@ public class Movement : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.D)){
-            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            gameObject.transform.localScale = new Vector3(1, 2, 1);
+            Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(rotator);
         }
 
         if (Input.GetKey(KeyCode.A)){
-            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            gameObject.transform.localScale = new Vector3(1, 2, 1);
+            Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(rotator);
         }
 
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGrounded);
