@@ -2,17 +2,22 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject[] buttons;
+    public GameObject[] menus;
     public Animator[] animators;
     private bool[] buttonStates;
     public bool transition = false;
+    public int transition_type = 0;
+
 
     private void Awake()
     {
         buttonStates = new bool[buttons.Length];
     }
+
 
     private void Update()
     {
@@ -28,8 +33,10 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             }
         }
 
+
         CheckAnimatorStates();
     }
+
 
     private void CheckAnimatorStates()
     {
@@ -45,15 +52,18 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         HandlePointerEvent(eventData.pointerEnter, true);
     }
 
+
     public void OnPointerExit(PointerEventData eventData)
     {
         HandlePointerEvent(eventData.pointerEnter, false);
     }
+
 
     private void HandlePointerEvent(GameObject pointerObject, bool isEntering)
     {
@@ -70,6 +80,7 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
+
     private IEnumerator HandleButtonAction(int index)
     {
         for (int i = 0; i < animators.Length; i++)
@@ -77,13 +88,31 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             animators[i].Play(i == index ? "button1_pressed" : "button1_fade");
         }
 
-        Debug.Log("Menu transition");
-        yield return new WaitForSeconds(1);
-        Debug.Log("Disable assets");
 
-        foreach (var button in buttons)
+        Debug.Log("Menu transition");
+
+
+        yield return new WaitForSeconds(1);
+
+
+        Debug.Log("Disable assets");
+        transition_type = index + 1;
+        Debug.Log(transition_type);
+
+
+        foreach (var menu in menus)
         {
-            button.SetActive(false);
+            menu.SetActive(false);
         }
+
+
+        if (index >= 0 && index < menus.Length)
+        {
+            menus[index].SetActive(true);
+        }
+
+
     }
 }
+
+
