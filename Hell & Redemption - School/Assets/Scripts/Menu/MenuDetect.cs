@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 
 public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -32,8 +33,6 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                 }
             }
         }
-
-
         CheckAnimatorStates();
     }
 
@@ -105,8 +104,9 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             menu.SetActive(false);
         }
 
-
-        if (index >= 0 && index < menus.Length)
+        if (transition_type == 1){
+            SceneManager.LoadScene("Main");
+        }else if (index >= 0 && index < menus.Length)
         {
             menus[index].SetActive(true);
         }
