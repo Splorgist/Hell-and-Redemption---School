@@ -37,8 +37,8 @@ MonoBehaviour:
   HeadWidth: 0.75
   DebugShowIsGroundedBox: 0
   DebugShowHeadBumpBox: 0
-  ShowWalJumpArc: 1
-  ShowRunJumpArc: 1
+  ShowWalJumpArc: 0
+  ShowRunJumpArc: 0
   StopOnCollision: 1
   DrawRight: 1
   ArcResolution: 20
