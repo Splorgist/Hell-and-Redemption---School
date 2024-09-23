@@ -1,55 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    // [SerializeField] private Transform playerTransform;
-    // [SerializeField] private float flipYRotationTime = 0.5f;
-    // private Coroutine turnCoroutine;
-    // public GameObject player;
-    // private bool facingRight;
-    // void Awake()
-    // {
-    //     player = playerTransform.gameObject.GetComponent<Player>();
-    //     facingRight = player.facingRight;
-    // }
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private float flipYRotationTime = 0.5f;
+    [SerializeField] private float lerpSpeed = 2f;
+    private Coroutine turnCoroutine;
+    private PlayerMovement playerMovement;
+    private float targetOffsetX;
 
-    // void Update()
-    // {
-    //     transform.position = playerTransform.position;
-    // }
+    void Awake()
+    {
+        playerMovement = playerTransform.GetComponent<PlayerMovement>();
+        targetOffsetX = 1f; // Initial offset
+        UpdateCameraPosition();
+    }
 
-    // public void CallTurn()
-    // {
-    //     turnCoroutine = StartCoroutine(FlipYLerp());
-    // }
+    void Update()
+    {
+        // Check if camera needs to lerp
+        if (!playerMovement._cameraRight)
+        {
+            targetOffsetX = Mathf.Lerp(targetOffsetX, -1f, Time.deltaTime * lerpSpeed);
+        }
+        else
+        {
+            targetOffsetX = Mathf.Lerp(targetOffsetX, 1f, Time.deltaTime * lerpSpeed);
+        }
 
-    // private IEnumerator FlipYLerp()
-    // {
-    //     float startRotation = transform.localEulerAngles.y;
-    //     float endRotationAmount = DetermineEndRotation();
-    //     float yRotation = 0f;
+        UpdateCameraPosition();
+    }
 
-    //     float elapseTime = 0f;
-    //     while (elapseTime < flipYRotationTime){
-    //         elapseTime += Time.deltaTime;
-
-    //         yRotation = Mathf.Lerp(startRotation, endRotationAmount, (elapseTime / flipYRotationTime));
-    //         transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
-
-    //         yield return null;
-    //     }
-    // }
-
-    // private float DetermineEndRotation()
-    // {
-    //     facingRight = !facingRight;
-
-    //     if (facingRight){
-    //         return 180f;
-    //     }else{
-    //         return 0f;
-    //     }
-    // }
+    private void UpdateCameraPosition()
+    {
+        transform.position = new Vector3(playerTransform.position.x + targetOffsetX, playerTransform.position.y, playerTransform.position.z);
+    }
 }

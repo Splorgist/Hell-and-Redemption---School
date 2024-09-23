@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Referrences")]
     public PlayerMovementStats MoveStats;
+    public CameraFollow _cameraFollow;
+    public bool _cameraRight = true;
     [SerializeField] private Collider2D _feetColl;
     [SerializeField] private Collider2D _bodyColl;
 
@@ -51,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
     {
         CountTimers();
         JumpChecks();
-        Debug.Log(_numberOfJumpsUsed);
     }
 
     private void FixedUpdate()
@@ -276,9 +277,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (turnRight){
             _isFacingRight = true;
+            _cameraRight = true;
             transform.Rotate(0f, 180f, 0f);
         } else {
             _isFacingRight = false;
+            _cameraRight = false;
             transform.Rotate(0f, -180f, 0f);
         }
     }
