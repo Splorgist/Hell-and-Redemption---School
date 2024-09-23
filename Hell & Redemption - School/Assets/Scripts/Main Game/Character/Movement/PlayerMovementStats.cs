@@ -8,23 +8,23 @@ using UnityEngine;
 public class PlayerMovementStats : ScriptableObject
 {
     [Header("Walk")]
-    [Range(1f, 100f)] public float MaxWalkSpeed = 12.5f;
+    [Range(1f, 100f)] public float MaxWalkSpeed = 10f;
     [Range(0.25f, 50f)] public float GroundAcceleration = 5f;
-    [Range(0.25f, 50f)] public float GroundDeceleration = 20f;
-    [Range(0.25f, 50f)] public float AirAcceleration = 5f;
-    [Range(0.25f, 50f)] public float AirDeceleration = 5f;
+    [Range(0.25f, 50f)] public float GroundDeceleration = 15f;
+    [Range(0.25f, 50f)] public float AirAcceleration = 6f;
+    [Range(0.25f, 50f)] public float AirDeceleration = 6f;
 
 
     [Header("Run")]
-    [Range(1f,100f)] public float MaxRunSpeed = 20f;
+    [Range(1f,100f)] public float MaxRunSpeed = 15f;
 
 
     [Header("Jump")]
-    public float JumpHeight = 6.5f;
+    public float JumpHeight = 5f;
     [Range(1f, 1.1f)] public float JumpHeightCompensationFactor = 1.054f;
     public float TimeTillJumpApex = 0.35f;
-    [Range(0.01f, 5f)] public float GravityOnReleaseMultiplier = 2f;
-    public float MaxFallSpeed = 26f;
+    [Range(0.01f, 5f)] public float GravityOnReleaseMultiplier = 1.5f;
+    public float MaxFallSpeed = 25f;
     [Range(1, 5)] public int NumberOfJumpsAllowed;
 
 
@@ -42,7 +42,7 @@ public class PlayerMovementStats : ScriptableObject
 
 
     [Header("Jump Coyote Time")]
-    [Range(0f, 1f)] public float JumpCoyoteTime = 0.1f;
+    [Range(0f, 1f)] public float JumpCoyoteTime = 0.05f;
 
 
     [Header("Ground/Collision Checks;")]

@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CountTimers();
         JumpChecks();
+        Debug.Log(_numberOfJumpsUsed);
     }
 
     private void FixedUpdate()
@@ -235,13 +236,6 @@ public class PlayerMovement : MonoBehaviour
             _isPastApexThreshold = false;
             _numberOfJumpsUsed = 0;
 
-
-
-
-
-
-
-
             VerticleVelocity = Physics2D.gravity.y;
         }
     }
@@ -258,14 +252,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void InitiateJump(int _numberOfJumpsUsed)
+    private void InitiateJump(int _jumpCount)
     {
         if (!_isJumping){
             _isJumping = true;
         }
 
         _jumpBufferTimer = 0f;
-        _numberOfJumpsUsed += _numberOfJumpsUsed;
+        _numberOfJumpsUsed += _jumpCount;
         VerticleVelocity = MoveStats.InitialJumpVelocity;
     }
 
