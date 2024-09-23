@@ -6,22 +6,19 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private float flipYRotationTime = 0.5f;
     [SerializeField] private float lerpSpeed = 2f;
-    private Coroutine turnCoroutine;
     private PlayerMovement playerMovement;
     private float targetOffsetX;
 
     void Awake()
     {
         playerMovement = playerTransform.GetComponent<PlayerMovement>();
-        targetOffsetX = 1f; // Initial offset
+        targetOffsetX = 1f;
         UpdateCameraPosition();
     }
 
     void Update()
     {
-        // Check if camera needs to lerp
         if (!playerMovement._cameraRight)
         {
             targetOffsetX = Mathf.Lerp(targetOffsetX, -1f, Time.deltaTime * lerpSpeed);
