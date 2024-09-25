@@ -228,6 +228,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        // Jump with buffering and coyote time
         if (_jumpBufferTimer > 0f && !_isJumping && (_isGrounded || _coyoteTimer > 0f)){
             InitiateJump(1);
 
@@ -237,16 +238,20 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        // Double Jump
         else if (_jumpBufferTimer > 0f && _isJumping && _numberOfJumpsUsed < MoveStats.NumberOfJumpsAllowed){
             _isFastFalling = false;
             InitiateJump(1);
         }
 
+        // Air Jump after coyote time lapsed
         else if (_jumpBufferTimer > 0f && _isFalling && _numberOfJumpsUsed < MoveStats.NumberOfJumpsAllowed - 1){
             InitiateJump(2);
             _isFastFalling = false;
         }
 
+
+        // Landed
         if ((_isJumping || _isFalling) && _isGrounded && VerticleVelocity <= 0f){
             _isJumping = false;
             _isFalling = false;
