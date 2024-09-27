@@ -45,11 +45,16 @@ public class PlayerMovementStats : ScriptableObject
     [Range(0f, 1f)] public float JumpCoyoteTime = 0.05f;
 
 
-    [Header("Ground/Collision Checks;")]
+    [Header("Ground/Collision Checks")]
     public LayerMask GroundLayer;
     public float GroundDetectionRayLength = 0.02f;
     public float HeadDetectionRayLength = 0.02f;
     [Range(0f, 1f)] public float HeadWidth = 0.75f;
+
+
+    [Header("Combat Stats")]
+    [Range(1f, 100f)] public float DamageAmount = 20f;
+    [Range(1f, 500f)] public float HealthAmount = 100f;
 
 
     [Header("Debug")]

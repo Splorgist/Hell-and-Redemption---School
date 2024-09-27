@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CountTimers();
         JumpChecks();
+        AttackCheck();
 
         if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling){
             CameraManager.instance.LerpYDamping(true);
@@ -103,6 +104,27 @@ public class PlayerMovement : MonoBehaviour
         else if (moveInput == Vector2.zero){
             _moveVelocity = Vector2.Lerp(_moveVelocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
             _rb.velocity = new Vector2(_moveVelocity.x, _rb.velocity.y);
+        }
+    }
+
+    private void AttackCheck()
+    {
+        if (InputManager.Attack){
+            if (InputManager.Movement.y > 0){
+            Debug.Log("Attacking up");
+            }
+
+            else if (InputManager.Movement.y < 0){
+                Debug.Log("Attacking down");
+                }
+
+            else if (_isFacingRight){
+                Debug.Log("Attacking right");
+                }
+
+            else{
+                Debug.Log("Attacking left");
+            }
         }
     }
 
