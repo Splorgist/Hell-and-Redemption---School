@@ -4,6 +4,7 @@ using Unity.Collections.LowLevel.Unsafe;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -62,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         CountTimers();
         JumpChecks();
         AttackCheck();
+        ExitCheck();
 
         if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling){
             CameraManager.instance.LerpYDamping(true);
@@ -125,6 +127,13 @@ public class PlayerMovement : MonoBehaviour
             else{
                 Debug.Log("Attacking left");
             }
+        }
+    }
+
+    private void ExitCheck()
+    {
+        if (InputManager.Exit){
+            SceneManager.LoadScene("Menu");
         }
     }
 
