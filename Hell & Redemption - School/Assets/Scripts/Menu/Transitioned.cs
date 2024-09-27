@@ -9,7 +9,6 @@ public class Transitioned : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     public GameObject menu1;
     public GameObject menu2;
-    public MenuDetect menu_detect;
     public int transition_detect;
     public bool transition = true;
 

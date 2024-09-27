@@ -127,7 +127,7 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
 
         if (transition_type == 1){
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("Boss Room");
         }else if (index >= 0 && index < menus.Length)
         {
             menus[index].SetActive(true);
