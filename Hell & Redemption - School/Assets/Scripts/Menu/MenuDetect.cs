@@ -9,6 +9,7 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public GameObject[] buttons;
     public GameObject[] menus;
     public Animator[] animators;
+    public Animator title;
     private bool[] buttonStates;
     public bool transition = false;
     public int transition_type = 0;
@@ -17,6 +18,26 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private void Awake()
     {
         buttonStates = new bool[buttons.Length];
+    }
+
+    void Start()
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            animators[i].Play($"button1_fade_in");
+        }
+
+        title.Play("title_fade_in");
+    }
+
+    private void OnEnable()
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            animators[i].Play($"button1_fade_in");
+        }
+
+        title.Play("title_fade_in");
     }
 
 
@@ -82,6 +103,7 @@ public class MenuDetect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private IEnumerator HandleButtonAction(int index)
     {
+        title.Play("title_fade_out");
         for (int i = 0; i < animators.Length; i++)
         {
             animators[i].Play(i == index ? "button1_pressed" : "button1_fade");
